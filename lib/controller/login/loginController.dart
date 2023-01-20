@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gushejianying/API/Login&Regi/forgetPwdAPI.dart';
+import 'package:flutter_gushejianying/API/Login&Regi/forgetPwdReq.dart';
 import 'package:flutter_gushejianying/API/Login&Regi/loginApi.dart';
 import 'package:flutter_gushejianying/API/Login&Regi/loginReq.dart';
 import 'package:flutter_gushejianying/API/Login&Regi/regiAPI.dart';
@@ -18,7 +20,7 @@ class loginController extends GetxController {
   Map<String, dynamic> userInfo = {}; //用来存储用户信息
   var email = ' ';
   var password = ' ';
-  String tip = "初始化";
+  String tip = "现在请去登陆";
 
   GetStorage gs = GetStorage();
 
@@ -57,8 +59,10 @@ class loginController extends GetxController {
       tip = "该账号不存在或密码错误！";
     } else if (result.code == 300) {
       //todo 信息没补全
-      Get.snackbar("提醒", "您还没有补全信息，请补全信息后使用",
-      duration: const Duration(seconds: 10),
+      Get.snackbar(
+        "提醒",
+        "您还没有补全信息，请补全信息后使用",
+        duration: const Duration(seconds: 10),
         icon: const Icon(
           Icons.account_circle,
           color: Colors.red,
@@ -102,6 +106,43 @@ class loginController extends GetxController {
       Get.offAllNamed(Routes.infoComplete);
     } else {
       tip = "账号已存在";
+    }
+  }
+
+  //?忘记密码操作
+  ForgetPwd() async {
+    ///前置 ： 判断上次忘记密码和本次的相隔时间
+
+    var lastForgetTime = gs.read(LocalStorage.LastForgetPwdTime);  //看看是不是第一次重置密码
+    print(lastForgetTime.toString());
+    if (lastForgetTime != null) {
+      DateTime lastForgetTime =
+          DateTime.parse(gs.read(LocalStorage.LastForgetPwdTime));
+      //如果不是第一次忘记密码
+      // 将上次的时间加上7天为无效时间，如果时间在无效时间内，不可忘记密码
+      DateTime CanNotUseTime = lastForgetTime.add(const Duration(days: 7));
+      if (DateTime.now().isBefore(CanNotUseTime)) {
+        tip = "您在$lastForgetTime时已经重置过密码,在一周内不可再次重置";
+        return; //结束本次查询
+      }
+    }
+
+    ///1.email封装到忘记密码实体类中
+    ForgetPwdReq params = ForgetPwdReq(email: email);
+    Result result = await ForgetPwdApi.forgetPwdApi(params: params);
+
+    ///2.发送请求并判断返回
+    if (result.code == 100) {
+      tip = "该用户不存在或者状态受到限制，无法更改密码";
+      return;
+    }
+    if (result.code == 200) {
+      Get.snackbar("成功", "您的密码重置成功，请到邮箱中查看");
+
+      ///3.将日期存入本地存储中
+      gs.write(LocalStorage.LastForgetPwdTime, DateTime.now().toString());
+    } else {
+      tip = "出现网络问题！";
     }
   }
 }

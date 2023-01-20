@@ -24,7 +24,6 @@ class LoginPage extends GetView<loginController> {
       await controller.login(); //执行登陆操作  //!!非常重要，需要异步执行程序，等待这边的赋值完成才能返回
 
       return controller.tip;
-      
     });
   }
 
@@ -45,11 +44,10 @@ class LoginPage extends GetView<loginController> {
   Future<String> _recoverPassword(String name) {
     //找回密码
 
-    return Future.delayed(loginTime).then((_) {
-      // if (!users.containsKey(name)) {
-      //   return '用户不存在';
-      // }
-      return 'food';
+    return Future.delayed(loginTime).then((_) async {
+      controller.email = name;
+      await controller.ForgetPwd();
+      return controller.tip;
     });
   }
 
@@ -61,7 +59,7 @@ class LoginPage extends GetView<loginController> {
         loginButton: "登录",
         signupButton: "注册",
         forgotPasswordButton: "忘记密码？",
-        recoverPasswordDescription: "系统将会给您的邮箱发送一个临时密码,建议您本次登录后立即去更改密码",
+        recoverPasswordDescription: "系统将会给您的邮箱发送一个临时密码,请在此输入您的邮箱（每周限一次）",
         recoverPasswordButton: "重置密码",
         recoverPasswordIntro: "请输入邮箱重置密码",
         goBackButton: "返回",
