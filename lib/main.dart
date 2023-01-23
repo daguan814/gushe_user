@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       getPages: Routes.routes, //注册所有路由，路由都在config目录里
 
       theme: ThemeData(
-        primarySwatch: Colors.amber, //全局按钮颜色
+        primarySwatch: Colors.lightBlue, //全局按钮颜色
       ),
     );
   }

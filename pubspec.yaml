@@ -51,6 +51,7 @@ dev_dependencies:
   carousel_slider: ^4.2.1  #轮播图
   flutter_login: ^4.1.1 #快速登陆页
   gsform: ^0.1.5 #快速表单/
+  persistent_bottom_nav_bar: ^5.0.2 #动画Bottom Navigation Bar
 
 
   # The "flutter_lints" package below contains a set of recommended lints to
