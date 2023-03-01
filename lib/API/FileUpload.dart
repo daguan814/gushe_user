@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart' as dioCC;
-import 'package:flutter_gushejianying/common/config/DioClicent.dart';
+import 'package:flutter_gushejianying/config/DioClicent.dart';
 
 class FileUpload {
   //?输入：路径， 输出：文件直接访问的路径

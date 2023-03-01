@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../../common/config/app_colors.dart';
-import '../../common/config/assets.dart';
+import '../../config/app_colors.dart';
+import '../../config/assets.dart';
 import '../../common/routes/Routes.dart';
 
 

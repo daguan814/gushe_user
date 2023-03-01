@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../controller/hanbokSell/hanbokSellController.dart';
+import 'hanbokSellController.dart';
 
 class hanbokSellPage extends GetView<hanbokSellController> {
   const hanbokSellPage({super.key});

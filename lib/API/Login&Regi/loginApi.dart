@@ -2,7 +2,7 @@
 
 import 'package:flutter_gushejianying/API/Login&Regi/loginReq.dart';
 
-import '../../../common/config/DioClicent.dart';
+import '../../config/DioClicent.dart';
 import '../Result.dart';
 import 'regiReq.dart';
 

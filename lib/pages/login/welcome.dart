@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../../common/config/assets.dart';
+import '../../config/assets.dart';
 
 import '../../common/mywidget/MyButton.dart';
 import '../../common/routes/Routes.dart';

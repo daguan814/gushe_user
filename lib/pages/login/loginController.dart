@@ -10,7 +10,7 @@ import 'package:get_storage/get_storage.dart';
 
 import '../../API/Login&Regi/regiReq.dart';
 import '../../API/Result.dart';
-import '../../common/config/LocalStorge.dart';
+import '../../config/LocalStorge.dart';
 import '../../common/routes/Routes.dart';
 
 //登陆、注册、忘记密码的逻辑控制

@@ -1,7 +1,7 @@
 // ignore: file_names
 
 
-import '../../../common/config/DioClicent.dart';
+import '../../config/DioClicent.dart';
 import '../Result.dart';
 import 'regiReq.dart';
 

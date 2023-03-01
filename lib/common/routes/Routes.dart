@@ -2,7 +2,7 @@
 import 'package:get/get.dart';
 
 import '../../pages/home/home.dart';
-import '../../pages/login/infoComplete.dart';
+import '../../pages/login/infoComplete/infoComplete.dart';
 import '../../pages/login/login.dart';
 import '../../pages/login/splash.dart';
 import '../../pages/login/welcome.dart';

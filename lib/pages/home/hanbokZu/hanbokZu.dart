@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gushejianying/controller/hanbokZu/hanbokZuController.dart';
-import 'package:flutter_gushejianying/controller/login/homeController.dart';
+import 'package:flutter_gushejianying/pages/home/hanbokZu/hanbokZuController.dart';
+import 'package:flutter_gushejianying/pages/home/homeController.dart';
 import 'package:flutter_gushejianying/pages/home/home.dart';
 import 'package:get/get.dart';
 

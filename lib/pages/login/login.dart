@@ -5,9 +5,9 @@ import 'package:get/get.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_login/flutter_login.dart';
 
-import '../../common/config/assets.dart';
+import '../../config/assets.dart';
 import '../../common/routes/Routes.dart';
-import '../../controller/login/loginController.dart';
+import 'loginController.dart';
 
 class LoginPage extends GetView<loginController> {
   //已经成功导入了，

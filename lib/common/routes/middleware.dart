@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-import '../config/LocalStorge.dart';
+import '../../config/LocalStorge.dart';
 import 'Routes.dart';
 
 //判断用户登陆中间件

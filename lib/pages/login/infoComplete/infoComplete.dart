@@ -7,8 +7,8 @@ import 'package:gsform/gs_form/model/data_model/radio_data_model.dart';
 import 'package:gsform/gs_form/widget/field.dart';
 import 'package:gsform/gs_form/widget/form.dart';
 
-import '../../common/mywidget/MyButton.dart';
-import '../../controller/login/infoCompleteController.dart';
+import '../../../common/mywidget/MyButton.dart';
+import 'infoCompleteController.dart';
 
 // ignore: camel_case_types
 class infoCompletePage extends GetView<infoCompleteController> {

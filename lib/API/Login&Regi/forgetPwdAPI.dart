@@ -5,7 +5,7 @@
 
 import 'package:flutter_gushejianying/API/Login&Regi/forgetPwdReq.dart';
 
-import '../../common/config/DioClicent.dart';
+import '../../config/DioClicent.dart';
 import '../Result.dart';
 
 class ForgetPwdApi {

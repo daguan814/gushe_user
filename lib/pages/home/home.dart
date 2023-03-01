@@ -1,12 +1,14 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_gushejianying/config/LocalStorge.dart';
+import 'package:flutter_gushejianying/common/routes/Routes.dart';
 import 'package:flutter_gushejianying/pages/home/hanbokSell/hanbokSell.dart';
 import 'package:flutter_gushejianying/pages/home/hanbokZu/hanbokZu.dart';
 import 'package:flutter_gushejianying/pages/home/sheyingService/sheyingService.dart';
 import 'package:get/get.dart';
 
-import '../../controller/login/homeController.dart';
+import 'homeController.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 class HomePage extends GetView<HomeController> {
@@ -15,37 +17,34 @@ class HomePage extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     Get.put(HomeController());
-    
+    controller.initUserInfo(); //?初始化所有用户信息
     return Scaffold(
         appBar: AppBar(
-          title: const Text("古摄丽影",
-          style: TextStyle(
-            color: Colors.amberAccent
-          ),),
-
+          title: const Text(
+            "古摄丽影",
+            style: TextStyle(color: Colors.amberAccent),
+          ),
         ),
         drawer: Drawer(
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const <Widget>[
-                
-                //?头像组
-                /// 1.头像
-                /// 2.昵称
-                /// 3.vip身份铭牌，积分
-                
-                //?信息组
-                /// 1.信息管理
-                /// 2.消费记录
-                /// 3.修改密码
-                /// 4.订单记录
-                /// 5.退出登陆
-                /// 
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              //?头像组
+              _buildEasyInfo()
 
+              /// 1.头像
 
-              ],
-            ),
+              /// 2.昵称
+              /// 3.vip身份铭牌，积分
+
+              //?信息组
+              /// 1.信息管理
+              /// 2.消费记录
+              /// 3.修改密码
+              /// 4.订单记录
+              /// 5.退出登陆
+              ///
+            ],
           ),
         ),
         body: PersistentTabView(
@@ -85,7 +84,7 @@ class HomePage extends GetView<HomeController> {
 
 //?这是home总的页面路由
   List<Widget> _buildScreens() {
-    return [sheyingServicePage(), hanbokZuPage(),hanbokSellPage()];
+    return [sheyingServicePage(), hanbokZuPage(), hanbokSellPage()];
   }
 
 //?底部导航栏
@@ -110,5 +109,73 @@ class HomePage extends GetView<HomeController> {
         inactiveColorPrimary: Colors.grey,
       ),
     ];
+  }
+
+  //?头像组
+  _buildEasyInfo() {
+    return SafeArea(
+        child: Column(children: <Widget>[
+      //Flex的两个子widget按1：2来占据水平空间
+      GestureDetector(
+        onTap: () {
+          Get.toNamed(Routes.login);
+          // HomeController.vipGradetemp.value = "123";
+        },
+        child: Container(
+          decoration: const BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+              color: Color.fromARGB(220, 180, 175, 181)),
+          margin: const EdgeInsets.fromLTRB(10, 20, 20, 5),
+          child: Flex(
+            direction: Axis.horizontal,
+            children: <Widget>[
+              Expanded(
+                flex: 1,
+                child: SizedBox(
+                  height: 100.0,
+                  child: ClipOval(
+                    ///圆形头像
+                    child: Obx(() => Image.network(
+                        HomeController.headImgtemp.value,
+                        fit: BoxFit.cover)),
+                  ),
+                ),
+              ),
+              Expanded(
+                flex: 2,
+                child: SizedBox(
+                  //?昵称
+                  // ignore: sort_child_properties_last
+                  child: Column(
+                    children: [
+                      ///昵称和身份铭牌
+                      Center(
+                          child: Obx(() => Text(
+                                HomeController.nickNametemp.value,
+                                style: const TextStyle(
+                                    color: Colors.amber, fontSize: 24),
+                              ))),
+
+                      Container(
+                        color: Colors.red,
+                        width: 100,
+                        margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+                        alignment: Alignment.center,
+                        child: Obx(() => Text(
+                              HomeController.vipGradetemp.value,
+                              style: const TextStyle(
+                                  color: Colors.white, fontSize: 20),
+                            )),
+                      )
+                    ],
+                  ),
+                  height: 100.0,
+                ),
+              ),
+            ],
+          ),
+        ),
+      )
+    ]));
   }
 }
